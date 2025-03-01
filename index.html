@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkMyMeet - Coming Soon | One-Stop Appointment Booking Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff3131;
+            --primary-dark: #e02020;
+            --primary-light: #ff6565;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+            min-height: 100vh;
+        }
+        
+        /* Header Section */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(255, 49, 49, 0.2);
+        }
+        
+        .logo span {
+            color: var(--dark-gray);
+            -webkit-text-fill-color: var(--dark-gray);
+        }
+        
+        /* Coming Soon Hero Section */
+        .coming-soon {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, rgba(255, 49, 49, 0.9) 0%, rgba(255, 69, 69, 0.7) 100%), url('/api/placeholder/1600/800') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 49, 49, 0.2) 0%, rgba(255, 49, 49, 0.05) 100%);
+            animation: pulse 4s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: float 3s infinite alternate;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        .coming-soon h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(0, 0, 0, 0));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .coming-soon p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .launch-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 100px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: var(--text-shadow);
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        .waitlist-form {
+            display: flex;
+            max-width: 500px;
+            margin: 40px auto 0;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .waitlist-form input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .waitlist-form button {
+            border-radius: 0 30px 30px 0;
+            padding: 18px 30px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #333 0%, #222 100%);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .waitlist-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Features Preview Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            border-radius: 3px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 49, 49, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: -1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(255, 49, 49, 0.3);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        /* Industries Preview */
+        .industries {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .industries::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover no-repeat;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .industry-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .industry-badge {
+            padding: 15px 25px;
+            background: white;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .industry-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, rgba(255, 49, 49, 0.1) 0%, rgba(255, 49, 49, 0.05) 100%);
+        }
+        
+        .coming-soon-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 49, 49, 0.3);
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+        
+        .indicator.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url('/api/placeholder/100/100');
+            background-size: 30px;
+            opacity: 0.05;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: var(--text-shadow);
+        }
+        
+        .newsletter p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter .waitlist-form {
+            max-width: 600px;
+        }
+        
+        .newsletter .waitlist-form button {
+            background: linear-gradient(to right, #222, #333);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: var(--white);
+            padding: 40px 0 20px;
+            position: relative;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 30px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: white;
+            -webkit-text-fill-color: white;
+        }
+        
+        .coming-soon-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 22px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 49, 49, 0.3);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .coming-soon h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .launch-countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .waitlist-form {
+                flex-direction: column;
+                width: 90%;
+            }
+            
+            .waitlist-form input {
+                border-radius: 30px;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .waitlist-form button {
+                border-radius: 30px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .coming-soon h1 {
+                font-size: 2rem;
+            }
+            
+            .coming-soon p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .coming-soon-badge {
+                padding: 5px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.5) !important;
+            backdrop-filter: blur(15px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* ======= Logo Styling ======= */
+        .navbar img {
+            height: 50px !important;
+            width: 120px !important;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
+        }
+
+        .navbar img:hover {
+            transform: scale(1.10);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        .footer-logo img {
+            height: 70px !important;
+            width: 140px !important;
+            filter: brightness(0) invert(1) !important;
+            margin-bottom: 20px !important;
+        }
+
+        /* ======= Rest of existing CSS ======= */
+        :root {
+            --primary: #ff3131;
+            --primary-dark: #e02020;
+            --primary-light: #ff6565;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <!-- Updated Logo -->
+                <img src="MMM-removebg-preview.png" alt="MarkMyMeet Logo" class="logo-img">
+            </nav>
+        </div>
+    </header>
+
+    <!-- Coming Soon Hero Section -->
+    <section class="coming-soon">
+        <div class="container">
+            <div class="hero-content">
+                <div class="coming-soon-badge">LAUNCHING SOON</div>
+                <h1>One-Stop Appointment Booking Platform</h1>
+                <p>Book services across multiple industries including healthcare, beauty & wellness, hospitality, and home services - all in one place.</p>
+                
+                <!-- Launch Countdown
+                <div class="launch-countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number">31</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">12</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">45</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">22</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div> -->
+                </div>
+                
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="waitlist-form">
+                    <input type="email" name="email" placeholder="Enter your email to join the waitlist" required>
+                    <button type="submit" class="btn">Get Early Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Preview Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Coming Soon: Revolutionary Booking Experience</h2>
+                <p>Get ready for these exciting features that will transform how you book appointments</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Real-Time Availability</h3>
+                    <p>See available slots in real-time and book instantly without waiting for confirmation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Multi-Platform Access</h3>
+                    <p>Access our platform anytime, anywhere through web, Android and iOS applications</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI & Automation</h3>
+                    <p>Smart scheduling, reminders, and personalized recommendations based on your preferences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Preview Section -->
+    <section class="section industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Multiple Industries, One Platform</h2>
+                <p>MarkMyMeet will revolutionize appointment booking across these service sectors</p>
+            </div>
+            <div class="industry-preview">
+                <div class="industry-badge">
+                    <i class="fas fa-hospital"></i> Healthcare
+                </div>
+                <div class="industry-badge">
+                    <i class="fas fa-spa"></i> Beauty & Wellness
+                </div>
+                <div class="industry-badge">
+                    <i class="fas fa-utensils"></i> Restaurants
+                </div>
+                <div class="industry-badge">
+                    <i class="fas fa-home"></i> Home Services
+                </div>
+                <div class="industry-badge">
+                    <i class="fas fa-book"></i> Education
+                </div>
+                <div class="industry-badge">
+                    <i class="fas fa-dumbbell"></i> Fitness
+                </div>
+            </div>
+            
+            <div class="coming-soon-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section newsletter">
+        <div class="container">
+            <h2>Be First in Line</h2>
+            <p>Join our waitlist to receive early access, exclusive offers, and updates on our launch progress.</p>
+            
+            <form action="https://formspree.io/f/your-form-id" method="POST" class="waitlist-form">
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn">Join Waitlist</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">                <img src="MMM-removebg-preview.png" alt="" style="height: 50px; width: 100px;"> <img src="MMM-removebg-preview.png" alt="" style="height: 50px; width: 100px;"></div>
+                <p class="coming-soon-tagline">The universal gateway for appointment-based services launching soon in 2025</p>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MarkMyMeet. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script>
+        // Simulated countdown timer (replace with actual logic)
+        function updateCountdown() {
+            // For demo purposes, let's just decrement the seconds
+            let seconds = parseInt(document.querySelector(".countdown-item:nth-child(4) .countdown-number").innerText);
+            seconds = (seconds - 1 + 60) % 60;
+            document.querySelector(".countdown-item:nth-child(4) .countdown-number").innerText = seconds.toString().padStart(2, '0');
+            
+            setTimeout(updateCountdown, 1000);
+        }
+        
+        // Start the countdown when the page loads
+        window.onload = function() {
+            updateCountdown();
+        };
+    </script> -->
+</body>
+</html>
